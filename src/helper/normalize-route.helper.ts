@@ -1,20 +1,17 @@
-import { Right } from '@totemish/core';
-import { RouteType } from '../type/route.type';
+import { Either } from '@totemish/core';
+import { PathType } from '../type/path.type';
 
-export const normalizeRoute = (route: RouteType): string =>
-  Right.of(route)
-    .map((r: string | RegExp): string => typeof r === 'string' ? r: r.source)
-    .map((r: string): string => r.charAt(r.length - 1) !== '$' ? r : r.replace(/\$$/, ''))
-    .map((r: string): string => r.charAt(0) !== '^' ? r : r.replace(/^\^/, ''))
-    .fold(() => {}, (r: string) => r)
-;
-
-export const normalizeTrailingSlashes = (route: RouteType): string =>
-  Right.of(route)
-    .map((r: string | RegExp): string => typeof r === 'string' ? r: r.source)
-    .fold(() => {}, (r: string) =>
-      r.charAt(r.length - 1) !== '?'
-        ? (r.charAt(r.length - 1) !== '/' ? `${r}\/?` : `${r}?`)
-        : r
-    )
+/**
+ * Normalize route by removing $ and ^.
+ * @function normalizeRoute
+ * @param {PathType} route
+ * @returns {string}
+ */
+export const normalizeRoute = (route: PathType): string =>
+  Either.fromNullable(<any> route)
+  // .map((r) => Any.of(r instanceof RegExp).concat(Any.of(typeof r !== 'string')).isTrue ? r : this.swap())
+    .map((r) => typeof r === 'string' ? r : r.source)
+    .map((r) => r.charAt(r.length - 1) !== '$' ? r : r.replace(/\$$/, ''))
+    .map((r) => r.charAt(0) !== '^' ? r : r.replace(/^\^/, ''))
+    .fold((r) => r, (r) => r)
 ;
