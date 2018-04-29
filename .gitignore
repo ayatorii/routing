@@ -1,0 +1,11 @@
+.idea
+.vscode
+node_modules
+build
+.env
+/.nyc_output/
+/coverage/
+*.js
+!webpack.config.js
+*.d.ts
+*.js.map

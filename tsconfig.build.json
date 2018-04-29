@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "outDir": "build",
+    "module": "commonjs",
+    "lib": [
+      "es2018"
+    ],
+    "sourceMap": true,
+    "alwaysStrict": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "exclude": [
+    "**/*.spec.ts",
+    "node_modules",
+    "test"
+  ]
+}
