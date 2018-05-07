@@ -37,7 +37,7 @@ const Logger = (ctx) => {
     console.log(`${ctx.req.method}: ${ctx.req.url}`);
     
     return ctx;
-}
+};
 
 /**
  * Initialize router. If you want to dive right in, use Router#empty.
@@ -51,8 +51,8 @@ router.middleware(Logger, (r) => {
     /*
      * Here you get another router that will be merged to the parent router as soon as you return it.
      */
-    r.get('/', (ctx) => ctx.res.end('Hello from the index page!');
-    r.get('/about', (ctx) => ctx.res.end('Under construction');
+    r.get('/', (ctx) => ctx.res.end('Hello from the index page!'));
+    r.get('/about', (ctx) => ctx.res.end('Under construction'));
     
     return r;
 });
